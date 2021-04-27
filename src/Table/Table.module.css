@@ -1,0 +1,18 @@
+.tableTitles{
+    display: grid;
+    grid-template-areas:  "date name quantity distance";
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px;
+}
+.tT_date{
+    grid-area: date;
+}
+.tT_name{
+    grid-area: name;
+}
+.tT_quantity{
+    grid-area: quantity;
+}
+.tT_distance{
+    grid-area: distance;
+}

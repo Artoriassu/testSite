@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/redux-store';
+import TableContainer from './Table/TableContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Provider store={store}>
+          <div className='app-wrapper' >
+            <div className='app-wrapper-content'>
+              <Switch>
+                <Route exact path="/"
+                  render={() => <Redirect to={'/table'} />} />
+                <Route exact path="/site"
+                  render={() => <Redirect to={'/table'} />} />
+                <Route path="/table"
+                  render={() => <TableContainer />} />
+
+                <Route path="*"
+                  render={() => <div>
+                    <h4>Sorry, we can`t find this page.</h4>
+                  </div>} />
+              </Switch>
+            </div>
+          </div>
+        </Provider>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
